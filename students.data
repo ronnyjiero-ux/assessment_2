@@ -4,7 +4,19 @@
         "name": "Ronny",
         "email": "ronny.j@university.com",
         "password": "Aaaaa123",
-        "subjects": []
+        "subjects": [
+            {
+                "id": "934",
+                "mark": 57,
+                "grade": "P"
+            },
+            {
+                "id": "206",
+                "mark": 100,
+                "grade": "HD"
+            }
+        ],
+        "average_mark": 78.5
     },
     {
         "id": "356955",
@@ -18,6 +30,13 @@
         "name": "R",
         "email": "r.jiero@university.com",
         "password": "Aaaaa123",
+        "subjects": []
+    },
+    {
+        "id": "532835",
+        "name": "E",
+        "email": "e.f@university.com",
+        "password": "Eeeee123",
         "subjects": []
     }
 ]

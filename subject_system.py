@@ -27,7 +27,7 @@ def save_changes(student, update_student):
         students = database.load_students()
 
         for index,saved_student in enumerate(students):
-            if saved_student["id"] == student.id:
+            if saved_student["id"] == student["id"]:
                 students[index] = update_student
                 database.save_students(students)
 
@@ -132,7 +132,7 @@ def enrol_subject(student):
     update_student.setdefault("subjects", []).append(new_subject)
 
     update_student["average_mark"] = calculate_average(
-        update_student["subject"]
+        update_student["subjects"]
     )
 
     if save_changes(student, update_student):
@@ -175,8 +175,6 @@ def remove_subject(student):
     update_student = deepcopy(student)
     del update_student["subjects"][subject_index]
 
-    update_student = deepcopy(student)
-    del update_student["subjects"][subject_index]
 
     update_student["average_mark"] = calculate_average(
         update_student["subjects"]
