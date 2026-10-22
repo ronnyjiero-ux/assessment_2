@@ -6,6 +6,13 @@ import database
 import admin_system
 DATA_FILE = "students.data"
 
+#supports both .id dot notation and standard dictionary methods to prevent type mismatch crashes with other py
+class StudentDict(dict):
+    @property
+    def id(self):
+        return self.get("id")
+
+#hybrid dictionary format, allows database saving that support both object dot notation and dictionary methods
 class Student:
     def __init__(self, student_id: str, name: str, email: str, password: str, subjects=None):
         self.id = str(student_id)
@@ -14,14 +21,15 @@ class Student:
         self.password = password
         self.subjects = subjects if subjects is not None else []
 
-    def to_dict(self) -> dict:
-        return {
+    #Calling .to_dict() flattens the object into a structured dictionary that JSON knows
+    def to_dict(self) -> StudentDict:
+        return StudentDict({
             "id": self.id,
             "name": self.name,
             "email": self.email,
             "password": self.password,
             "subjects": self.subjects
-        }
+        })
 
     @classmethod
     def from_dict(cls, data: dict):
@@ -93,10 +101,7 @@ class StudentController:
             if choice in ("l", "1"):
                 student = self.login_student()
                 if student is not None:
-                    try:
-                        subject_system.handle_subject_enrolment(student.to_dict())
-                    except AttributeError:
-                        print("\t\tStudent Course Menu (c/e/r/s/x): (pending subject_system implementation)")
+                   subject_system.handle_subject_system(student.to_dict())
             elif choice == "r":
                 self.register_student()
             elif choice == "x":
