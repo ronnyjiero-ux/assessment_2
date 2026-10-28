@@ -1,42 +1,28 @@
 [
     {
-        "id": "616954",
+        "id": "268967",
         "name": "Ronny",
-        "email": "ronny.j@university.com",
+        "email": "r.jiero@university.com",
         "password": "Aaaaa123",
         "subjects": [
             {
-                "id": "934",
-                "mark": 57,
+                "id": "373",
+                "mark": 56,
                 "grade": "P"
             },
             {
-                "id": "206",
-                "mark": 100,
-                "grade": "HD"
+                "id": "564",
+                "mark": 68,
+                "grade": "C"
             }
         ],
-        "average_mark": 78.5
+        "average_mark": 62.0
     },
     {
-        "id": "356955",
-        "name": "a",
+        "id": "917003",
+        "name": "A",
         "email": "a.b@university.com",
         "password": "Aaaaa123",
-        "subjects": []
-    },
-    {
-        "id": "257507",
-        "name": "R",
-        "email": "r.jiero@university.com",
-        "password": "Aaaaa123",
-        "subjects": []
-    },
-    {
-        "id": "532835",
-        "name": "E",
-        "email": "e.f@university.com",
-        "password": "Eeeee123",
         "subjects": []
     }
 ]

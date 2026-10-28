@@ -1,9 +1,9 @@
-import database
-import utils
-import subject_system
-import utils
-import database
-import admin_system
+from Model import database
+from Model import utils
+from Controller import subject_system
+from Model import utils
+from Model import database
+from Controller import admin_system
 DATA_FILE = "students.data"
 
 #supports both .id dot notation and standard dictionary methods to prevent type mismatch crashes with other py
@@ -43,25 +43,25 @@ class Student:
 
 class StudentController:
     def __init__(self):
-     database.is_cunzai()
+     database.check_existingstudent()
 
     def prompt_credentials(self) -> tuple[str, str]:
         while True:
             email = input("\tEmail: ").strip()
             password = input("\tPassword: ").strip()
 #calls function from utils. It's for checking password and email format
-            if utils.yanzhengyouxiang(email) and utils.yanzhengmima(password):
-                print("\temail and  password formats acceptable")
+            if utils.check_email(email) and utils.check_password(password):
+                print("\tRegistration Successful")
                 return email, password
             else:
-                print("\tIncorrect email or password format")
+                print("\tIncorrect email or password format. Please try again.")
 #generate 6 digit student ID
     def generate_unique_id(self) -> str:
         existing_students = database.load_students()
         existing_ids = {s.get("id") for s in existing_students if isinstance(s, dict)}
 
         while True:
-            new_id = utils.shengchengxueshengid()
+            new_id = utils.generatestudentid()
             if new_id not in existing_ids:
                 return new_id
 #creating an account
@@ -69,7 +69,7 @@ class StudentController:
         print("\tStudent Sign Up")
         email, password = self.prompt_credentials()
 
-        existing_students = database.youxiangzhaoren(email)
+        existing_students = database.emailsearch(email)
         if existing_students:
             student_name = existing_students.get("name", "")
             print(f"\tStudent {student_name} already exist")
@@ -86,10 +86,10 @@ class StudentController:
         print("\tStudent Sign In")
         email, password = self.prompt_credentials()
 
-        student_record = database.youxiangzhaoren(email)
+        student_record = database.emailsearch(email)
 
         if not student_record or student_record.get("password") != password:
-            print("\tStudent does not exist")
+            print("\tIncorrect email or password")
             return None
 
         return Student.from_dict(student_record)

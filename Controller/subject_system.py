@@ -1,8 +1,8 @@
 import random
 from copy import deepcopy
 
-import database
-import utils
+from Model import database
+from Model import utils
 
 MAX_SUBJECT = 4
 
@@ -65,7 +65,7 @@ def change_password(student):
     while True:
         new_password = input("\t\tNew password: ")
 
-        if utils.yanzhengmima(new_password):
+        if utils.check_password(new_password):
             break
 
         print(

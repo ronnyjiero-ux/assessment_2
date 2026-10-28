@@ -1,5 +1,5 @@
-import student_system
-import admin_system
+from Controller import student_system
+from Controller import admin_system
 def main():
     while 1:
         x = input('University System: (A)dmin, (S)tudent, or X to exit: ')

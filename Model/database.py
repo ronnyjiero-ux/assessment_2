@@ -1,11 +1,11 @@
 import json
 import os
 DATA_FILE = "students.data"
-def is_cunzai():
+def check_existingstudent():
     if not os.path.exists(DATA_FILE):
         with open(DATA_FILE, 'w', encoding='utf-8') as f:
             json.dump([], f)
-#检查文件是否存在否则创建(老子就是要用中文写注释不服敲死我)
+
 
 def load_students():
     with open(DATA_FILE, 'r', encoding='utf-8') as f:
@@ -18,19 +18,16 @@ def load_students():
         except json.JSONDecodeError:
             print('The returned result is not a JSON.')
             return []
-#读取并检查, 一般我懒得做try检查...做个保险吧 省的怕他们写奇怪的东西进来.
+
 
 def save_students(students):
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(students, f, indent=4, ensure_ascii=False)
-#保存, 统一只有末尾带s的专用于代表读取进来的文件
 
 def clear_students():
     save_students([])
-#全删
 
-##下面是查询函数:
-def youxiangzhaoren(email):
+def emailsearch(email):
     students = load_students()
     for i in students:
         if i['email'] == email:
@@ -38,8 +35,8 @@ def youxiangzhaoren(email):
     return None
 
 def is_xueshengcunzai(email):
-    return youxiangzhaoren(email) is not None
-#纯确定是否存在, 可能不用这一段
+    return emailsearch(email) is not None
+
 
 def idzhaoren(student_id):
     students = load_students()
@@ -47,7 +44,6 @@ def idzhaoren(student_id):
         if i['id'] == student_id:
             return i
     return None
-##查询部分到此为止
 
 def tianjia(student):
     students = load_students()
@@ -69,7 +65,6 @@ def shanchu(student_id):
         if i['id'] != student_id:
             save_studentsdexuesheng.append(student)
     save_students(save_studentsdexuesheng)
-#一加一改一删
 
 
 

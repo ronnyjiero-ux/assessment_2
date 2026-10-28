@@ -2,25 +2,24 @@ import random
 import re
 EMAIL_PATTERN = r"^[A-Za-z]+\.[A-Za-z]+@university\.com$"
 PASSWORD_PATTERN = r"^[A-Z][A-Za-z]{4,}\d{3,}$"
-#常量, 用于检查输入
 
-def yanzhengyouxiang(email):
+def check_email(email):
     if re.match(EMAIL_PATTERN,email):
         return True
     else:
         return False
 
-def yanzhengmima(password):
+def check_password(password):
     if re.match(PASSWORD_PATTERN,password):
         return True
     else:
         return False    
 
-def shengchengxueshengid():
+def generatestudentid():
     number = random.randint(1,999999)
     return (f"{number:06d}")
 
-def shengchengkemu():
+def generatesclassid():
     number = random.randint(1,999)
     return (f"{number:03d}")
 

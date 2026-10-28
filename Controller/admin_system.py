@@ -1,5 +1,5 @@
-import database
-import utils
+from Model import database
+from Model import utils
 
 
 def calculate_average(subjects):
@@ -12,7 +12,7 @@ def calculate_grade(mark):
     if mark >= 85:
         return "HD"
     elif mark >= 75:
-        return "DN"
+        return "D"
     elif mark >= 65:
         return "C"
     elif mark >= 50:
@@ -151,7 +151,7 @@ def clear_database():
 
 
 def handle_admin_system():
-    database.is_cunzai()
+    database.check_existingstudent()
     print("Admin System")
     print("s: show | g: group | p: pass/fail")
     print("r: remove | c: clear | x: exit")
